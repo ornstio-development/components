@@ -1,0 +1,74 @@
+<div ornstioDialogContainer></div>
+<div class="grid">
+  <div class="left">
+    <div class="header">
+      <img src="./assets/logo.png" />
+      <h1>Ornstio</h1>
+    </div>
+
+    <ornstio-label>Setup</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of setupLinks"
+      >{{ link.name }}</a
+    >
+    <ornstio-label>Indicators</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of indicatorLinks"
+      >{{ link.name }}</a
+    >
+    <ornstio-label>Form Controls</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of formControlLinks"
+      >{{ link.name }}</a
+    >
+    <ornstio-label>Layout</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of layoutLinks"
+      >{{ link.name }}</a
+    >
+    <ornstio-label>Data Table</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of dataTableLinks"
+      >{{ link.name }}</a
+    >
+    <ornstio-label>Modals</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of modalLinks"
+      >{{ link.name }}</a
+    >
+    <ornstio-label>Enums</ornstio-label>
+    <a
+      class="link"
+      [ngClass]="{ active: link.name === routeName }"
+      [routerLink]="link.routerLink"
+      *ngFor="let link of enumLinks"
+      >{{ link.name }}</a
+    >
+  </div>
+  <div class="content">
+    <div class="top">
+      <h1>
+        {{ routeName }}
+      </h1>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

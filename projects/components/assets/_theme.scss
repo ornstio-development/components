@@ -1,0 +1,1063 @@
+@use "sass:map";
+@import "~highlight.js/scss/a11y-light.scss";
+
+$black25: #bfbfbf;
+$black75: #3f3f3f;
+$black90: #191919;
+$black50: #7f7f7f;
+
+@mixin ornstio-theme($colors, $error, $font-family) {
+  @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+  @import "~@angular/cdk/overlay-prebuilt.css";
+  $colors: map.set($colors, "error", $error);
+  $font-family: $font-family, sans-serif;
+
+  body {
+    font-family: $font-family;
+    color: $black90;
+  }
+
+  @include input($colors, $font-family);
+  @include label($colors);
+  @include card();
+  @include form-field();
+  @include select($colors);
+  @include radio($colors);
+  @include checkbox($colors);
+  @include button($colors);
+  @include ripple($colors);
+  @include tabs($colors);
+  @include table($colors);
+  @include paginator();
+  @include switch($colors);
+  @include dialog();
+  @include toast();
+  @include tooltip($colors);
+  @include progress-bar($colors);
+  @include spinner($colors);
+}
+
+@mixin spinner($colors) {
+  ornstio-spinner {
+    overflow: hidden;
+    display: inline-block;
+
+    .ornstio-spinner {
+      display: inline-block;
+      border-radius: 50% 50%;
+      border-color: $black90;
+      border-style: solid;
+      border-bottom-color: transparent;
+      animation: spinner 1s infinite linear;
+    }
+
+    @each $name, $color in $colors {
+      &.#{$name} {
+        .ornstio-spinner {
+          border-color: $color;
+          border-bottom-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+@mixin progress-bar($colors) {
+  ornstio-progress-bar {
+    display: block;
+    overflow: hidden;
+    background-color: lighter($black90);
+
+    &.indeterminate {
+      .ornstio-progress-bar {
+        animation: progressBar infinite ease-in-out 1.25s;
+      }
+    }
+
+    .ornstio-progress-bar {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-color: $black90;
+    }
+    @each $name, $color in $colors {
+      &.#{$name} {
+        background-color: lighter($color);
+        .ornstio-progress-bar {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin tooltip($colors) {
+  ornstio-tooltip {
+    background: $black90;
+    animation: growIn ease-in 0.1s;
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+      0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+    padding: 4px 8px;
+    border-radius: 2px;
+    color: white;
+    font-size: 12px;
+
+    @each $name, $color in $colors {
+      &.#{$name} {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+@mixin toast() {
+  .ornstio-toast-container {
+    animation: growIn ease-in 0.15s;
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+      0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+    margin: 0;
+
+    ornstio-toast {
+      padding: 8px 16px;
+      background: white;
+      button[ornstio-button] {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+@mixin dialog() {
+  .ornstio-dialog-container {
+    animation: growIn ease-in 0.15s;
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+      0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+    margin: 0;
+  }
+}
+
+@mixin switch($colors) {
+  ornstio-switch {
+    display: flex;
+    cursor: pointer;
+
+    .ornstio-switch {
+      &:focus {
+        outline: none;
+        &:not(.disabled) {
+          box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+            0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+      }
+      position: relative;
+      border: 1px solid $black90;
+      border-radius: 2px;
+      background-color: lighter($black90);
+      &.small {
+        height: 18px;
+        width: 36px;
+
+        .switch {
+          height: 14px;
+          width: 15px;
+        }
+      }
+      &.medium {
+        height: 24px;
+        width: 48px;
+        .switch {
+          height: 20px;
+          width: 21px;
+        }
+      }
+      &.large {
+        height: 34px;
+        width: 68px;
+        .switch {
+          height: 30px;
+          width: 31px;
+        }
+      }
+
+      .switch {
+        position: absolute;
+        border-radius: 2px;
+        border: 1px solid $black25;
+        top: 1px;
+        left: 1px;
+        background: white;
+        box-shadow: 0px 1px 6px rgba(11, 12, 14, 0.15);
+      }
+
+      &.unchecked {
+        --to: #{lighter($black90)};
+        --from: #{$black90};
+        animation: switchOffBackground 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        @each $name, $color in $colors {
+          &.#{$name} {
+            background-color: $color;
+            border-color: $color;
+            --to: #{$color};
+          }
+        }
+
+        .switch {
+          animation: switchOff 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+      }
+
+      &.checked {
+        --from: #{lighter($black90)};
+        --to: #{$black90};
+        background-color: $black90;
+        border-color: $black90;
+        animation: switchOnBackground 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        @each $name, $color in $colors {
+          &.#{$name} {
+            background-color: $color;
+            border-color: $color;
+            --to: #{$color};
+          }
+        }
+
+        .switch {
+          transform: translateX(100%);
+          animation: switchOn 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+      }
+
+      &.disabled {
+        cursor: auto;
+        background-color: $black25;
+        border-color: $black25;
+      }
+
+      &.no-animation {
+        animation: none;
+        .switch {
+          animation: none;
+        }
+      }
+    }
+
+    & > * {
+      margin: auto 0;
+      &.small {
+        font-size: 12px;
+      }
+      &.medium {
+        font-size: 14px;
+      }
+      &.large {
+        font-size: 16px;
+      }
+    }
+
+    span {
+      margin-left: 8px;
+      user-select: none;
+      &.disabled {
+        color: $black25;
+      }
+    }
+  }
+}
+
+@mixin paginator {
+  ornstio-paginator {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    & > * {
+      margin: auto 0 auto 16px;
+    }
+
+    ornstio-label {
+      color: $black50;
+    }
+
+    ornstio-select {
+      width: 96px;
+    }
+  }
+}
+
+@mixin table($colors) {
+  [ornstio-table] {
+    border-collapse: collapse;
+    border: 1px solid $black25;
+    table-layout: fixed;
+
+    tr {
+      &:not(:last-child) {
+        border-bottom: 1px solid $black25;
+      }
+    }
+
+    thead {
+      tr {
+        position: sticky;
+        top: 0;
+      }
+      th {
+        &.over {
+          background-color: $black25;
+        }
+        vertical-align: top;
+        border-bottom: 1px solid $black25;
+        ornstio-input {
+          margin-top: 4px;
+        }
+        ornstio-label {
+          &.sort {
+            label {
+              cursor: pointer;
+            }
+            i {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+
+    td,
+    th {
+      color: $black90;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      padding: 8px 16px;
+
+      &:not(:last-child) {
+        border-right: 1px solid $black25;
+      }
+    }
+  }
+}
+
+@mixin tabs($colors) {
+  ornstio-tabs {
+    display: block;
+    overflow: hidden;
+    .tab {
+      font-weight: 500;
+      padding: 8px 16px;
+      display: inline-block;
+      border: 1px solid transparent;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      bottom: -2px;
+      cursor: pointer;
+      &.active {
+        background: white;
+        border: 1px solid $black90;
+        border-bottom: none;
+
+        @each $name, $color in $colors {
+          &.#{$name} {
+            border-color: $color;
+          }
+        }
+      }
+    }
+
+    .tab-content {
+      &.left,
+      &.right {
+        overflow: hidden;
+      }
+      overflow: auto;
+      background-color: white;
+      padding: 16px;
+      border: 1px solid $black90;
+      border-radius: 2px;
+      white-space: nowrap;
+
+      ornstio-tab {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        &.left {
+          animation: scrollLeft 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+          &.prev {
+            animation: scrollLeft 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+          }
+        }
+        &.right {
+          animation: scrollRight 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+          &.prev {
+            animation: scrollRight 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+          }
+        }
+      }
+    }
+
+    @each $name, $color in $colors {
+      &.#{$name} {
+        .tab {
+          &.active {
+            color: $color;
+            border-color: $color;
+            border-bottom-color: transparent;
+          }
+        }
+        .tab-content {
+          border-color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin button-base($colors) {
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  background-color: white;
+  display: inline-block;
+
+  &.small {
+    padding: 2px 4px;
+    font-size: 12px;
+    i {
+      font-size: 13px;
+      margin: -2px -4px;
+      height: 15px;
+      width: 18px;
+      top: 2px;
+      position: relative;
+    }
+  }
+  &.medium {
+    padding: 4px 8px;
+    font-size: 14px;
+    i {
+      font-size: 16px;
+      margin: -4px -8px;
+      height: 24px;
+      width: 24px;
+      top: 3px;
+      position: relative;
+    }
+  }
+  &.large {
+    padding: 8px 16px;
+    font-size: 16px;
+    i {
+      font-size: 20px;
+      margin: -8px -16px;
+      height: 32px;
+      width: 37px;
+      top: 4px;
+      position: relative;
+    }
+  }
+
+  @each $name, $color in $colors {
+    &.#{$name} {
+      color: $color;
+    }
+  }
+
+  &.disabled {
+    cursor: default;
+    background-color: lighter($black90);
+    color: $black50;
+  }
+
+  &:hover,
+  &:focus {
+    &:not(:disabled) {
+      background-color: lighter($black90);
+      @each $name, $color in $colors {
+        &.#{$name} {
+          background-color: lighter($color);
+        }
+      }
+    }
+    outline: none;
+  }
+}
+
+@mixin ripple($colors) {
+  ornstio-ripple {
+    transform-origin: 50% 50%;
+    border-radius: 50% 50%;
+    pointer-events: none;
+    position: absolute;
+    background: lighter($black90);
+
+    @each $name, $color in $colors {
+      &.#{$name} {
+        background: lighter($color);
+      }
+    }
+  }
+}
+
+@mixin button($colors) {
+  button[ornstio-button] {
+    @include button-base($colors);
+  }
+
+  button[ornstio-stroked-button] {
+    @include button-base($colors);
+    border: 1px solid $black90;
+    @each $name, $color in $colors {
+      &.#{$name} {
+        border-color: $color;
+      }
+    }
+
+    &.disabled {
+      border-color: $black25;
+    }
+  }
+
+  button[ornstio-flat-button],
+  button[ornstio-raised-button] {
+    @include button-base($colors);
+    background-color: $black90;
+    color: white;
+    @each $name, $color in $colors {
+      &.#{$name} {
+        background: $color;
+        color: white;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &:not(.disabled) {
+        color: $black90;
+        @each $name, $color in $colors {
+          &.#{$name} {
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+
+  button[ornstio-raised-button] {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+@mixin card {
+  ornstio-card {
+    ornstio-card-content,
+    ornstio-card-header,
+    ornstio-card-footer {
+      display: block;
+    }
+  }
+}
+
+@mixin select($colors) {
+  ornstio-select {
+    ornstio-input {
+      flex: 1;
+    }
+  }
+  .ornstio-container {
+    background: white;
+    border: 1px solid $black75;
+    width: 100%;
+    max-height: 208px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    ornstio-option {
+      overflow: hidden;
+      cursor: pointer;
+      padding: 16px;
+      &:not(last-child) {
+        border-bottom: 1px solid $black25;
+      }
+
+      &:hover,
+      &.active {
+        background: lighter($black90);
+
+        @each $name, $color in $colors {
+          &.#{$name} {
+            background: lighter($color);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin form-field {
+  ornstio-form-field {
+    ornstio-label {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+@mixin input($colors, $font-family) {
+  ornstio-input,
+  ornstio-text-area {
+    display: flex;
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input,
+    textarea {
+      font-family: $font-family;
+      flex: 1;
+      border: 1px solid $black75;
+      color: $black75;
+      border-radius: 2px;
+      width: 100%;
+
+      &:focus {
+        background: lighter($black90);
+        outline: none;
+        border-color: $black90;
+      }
+
+      &:disabled {
+        border-color: $black25;
+        user-select: none;
+      }
+
+      @each $name, $color in $colors {
+        &.#{$name} {
+          &:focus {
+            background: lighter($color);
+            outline: none;
+            border-color: $color;
+            color: $color;
+          }
+        }
+      }
+
+      &.error:not(.disabled) {
+        background: lighter(map.get($colors, "error"));
+        outline: none;
+        border-color: map.get($colors, "error");
+        color: map.get($colors, "error");
+      }
+
+      &.small {
+        padding: 2px 4px;
+        font-size: 12px;
+        &.prefix {
+          padding-left: 24px;
+        }
+        &.suffix {
+          padding-right: 24px;
+        }
+      }
+      &.medium {
+        padding: 4px 8px;
+        font-size: 14px;
+        &.prefix {
+          padding-left: 30px;
+        }
+        &.suffix {
+          padding-right: 30px;
+        }
+      }
+      &.large {
+        padding: 8px 16px;
+        font-size: 16px;
+        &.prefix {
+          padding-left: 32px;
+        }
+        &.suffix {
+          padding-right: 32px;
+        }
+      }
+    }
+
+    textarea {
+      &.resize {
+        resize: vertical;
+      }
+      &.no-resize {
+        resize: none;
+      }
+    }
+    .ornstio-prefix {
+      top: 0;
+      left: 0;
+    }
+
+    .ornstio-suffix {
+      top: 0;
+      right: 0;
+    }
+
+    .ornstio-prefix,
+    .ornstio-suffix {
+      user-select: none;
+      pointer-events: none;
+      position: absolute;
+      color: $black75;
+
+      &.focus {
+        color: $black90;
+      }
+
+      &.disabled {
+        color: $black25;
+      }
+
+      @each $name, $color in $colors {
+        &.#{$name} {
+          &.focus {
+            color: $color;
+          }
+        }
+      }
+
+      &.small {
+        font-size: 12px;
+        margin: 4px 8px;
+      }
+      &.medium {
+        font-size: 16px;
+        margin: 6px 8px;
+      }
+      &.large {
+        font-size: 20px;
+        margin: 8px 8px;
+      }
+    }
+  }
+}
+
+@mixin label($colors) {
+  ornstio-label {
+    user-select: none;
+    @each $name, $color in $colors {
+      label {
+        &.#{$name} {
+          color: $color;
+        }
+      }
+    }
+
+    label {
+      &.disabled {
+        color: $black25;
+        user-select: none;
+      }
+    }
+  }
+}
+
+@mixin radio($colors) {
+  ornstio-radio-option {
+    display: block;
+    cursor: pointer;
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+  .ornstio-radio {
+    margin-right: 8px;
+    position: relative;
+    border-radius: 50% 50%;
+    border: 1px solid $black90;
+    height: 24px;
+    width: 24px;
+
+    &.active {
+      background: lighter($black90);
+      @each $name, $color in $colors {
+        &.#{$name} {
+          border: 1px solid $color;
+          background: lighter($color);
+        }
+      }
+      &.disabled {
+        border: 1px solid $black25;
+        background: lighter($black25);
+      }
+    }
+
+    &:focus {
+      background: lighter($black90);
+      outline: none;
+      @each $name, $color in $colors {
+        &.#{$name} {
+          background: lighter($color);
+        }
+      }
+      &.disabled {
+        background: lighter($black25);
+      }
+    }
+
+    & + * {
+      user-select: none;
+      margin: auto 0;
+      &.disabled {
+        color: $black25;
+      }
+    }
+
+    .ornstio-radio-active {
+      animation: growIn 0.1s cubic-bezier(0, 0, 0.2, 1);
+      transform-origin: 50% 50%;
+      border-radius: 50% 50%;
+      height: 12px;
+      width: 12px;
+      background: $black90;
+      top: 6px;
+      left: 6px;
+      position: absolute;
+
+      &.active {
+        @each $name, $color in $colors {
+          &.#{$name} {
+            background: $color;
+          }
+        }
+
+        &.disabled {
+          background: $black25;
+        }
+      }
+    }
+
+    &.disabled {
+      border-color: $black25;
+    }
+  }
+}
+
+@mixin checkbox($colors) {
+  ornstio-checkbox {
+    display: flex;
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+    .ornstio-checkbox {
+      background: white;
+      border-radius: 2px;
+      border: 1px solid $black90;
+      display: flex;
+
+      i {
+        margin: auto;
+        user-select: none;
+        &.small {
+          font-size: 18px;
+        }
+        &.medium {
+          font-size: 24px;
+        }
+        &.large {
+          font-size: 34px;
+        }
+        &.checked {
+          color: white;
+        }
+      }
+
+      &.small {
+        height: 18px;
+        width: 18px;
+      }
+      &.medium {
+        height: 24px;
+        width: 24px;
+      }
+      &.large {
+        height: 34px;
+        width: 34px;
+      }
+
+      &:focus {
+        outline: none;
+        background: lighter($black90);
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+          0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        @each $name, $color in $colors {
+          &.#{$name} {
+            background: lighter($color);
+          }
+        }
+      }
+
+      &.checked {
+        --from: white;
+        --to: #{$black90};
+        animation: fadeTo 0.15s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        background: $black90;
+
+        @each $name, $color in $colors {
+          &.#{$name} {
+            background: $color;
+            border-color: $color;
+            --to: #{$color};
+          }
+        }
+        &.disabled {
+          background: $black25;
+          border-color: $black25;
+        }
+      }
+
+      &.disabled {
+        border-color: $black25;
+      }
+    }
+
+    & > * {
+      margin: auto 0;
+      &.small {
+        font-size: 12px;
+      }
+      &.medium {
+        font-size: 14px;
+      }
+      &.large {
+        font-size: 16px;
+      }
+    }
+
+    span {
+      margin-left: 8px;
+      user-select: none;
+      &.disabled {
+        color: $black25;
+      }
+    }
+  }
+}
+
+@keyframes growIn {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@function lighter($color) {
+  @return rgba($color, 0.05);
+}
+
+@keyframes fadeTo {
+  from {
+    background: var(--from);
+  }
+  to {
+    background: var(--to);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes switchOnBackground {
+  0% {
+    background-color: var(--from);
+  }
+  100% {
+    background-color: var(--to);
+  }
+}
+
+@keyframes switchOffBackground {
+  0% {
+    background-color: var(--from);
+  }
+  100% {
+    background-color: var(--to);
+  }
+}
+
+@keyframes switchOn {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes switchOff {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes progressBar {
+  0% {
+    transform: translateX(-100%) scaleX(1);
+  }
+  75% {
+    transform: translateX(100%) scaleX(1);
+  }
+  100% {
+    transform: translateX(100%) scaleX(1);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

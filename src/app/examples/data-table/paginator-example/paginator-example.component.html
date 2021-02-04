@@ -1,0 +1,38 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>examples</h1>
+    <button
+      ornstio-button
+      ornstioRipple
+      size="large"
+      (click)="showCode = !showCode"
+    >
+      <i class="material-icons">code</i>
+    </button>
+  </ornstio-card-header>
+  <ornstio-card-content padding="16px 0 0px 16px">
+    <ornstio-tabs *ngIf="showCode">
+      <ornstio-tab name="html">
+        <ornstio-code-viewer [code]="html" lang="html"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="ts">
+        <ornstio-code-viewer [code]="ts" lang="ts"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="scss" *ngIf="scss">
+        <ornstio-code-viewer [code]="scss" lang="scss"></ornstio-code-viewer>
+      </ornstio-tab>
+    </ornstio-tabs>
+    <ornstio-paginator
+      [length]="100"
+      [pageSizes]="[5, 10, 25, 50, 100]"
+    ></ornstio-paginator>
+  </ornstio-card-content>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>api</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="apis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>

@@ -1,0 +1,23 @@
+<input
+  #input
+  [(ngModel)]="value"
+  (ngModelChange)="valueChange.next($event); control?.patchValue($event)"
+  [disabled]="disabled"
+  [readonly]="readonly"
+  [ngClass]="classes"
+  [placeholder]="placeholder"
+  [type]="type"
+  [tabindex]="tabindex"
+/>
+<i
+  *ngIf="!!prefix"
+  class="material-icons ornstio-prefix"
+  [ngClass]="iconClasses"
+  >{{ prefix }}</i
+>
+<i
+  *ngIf="!!suffix"
+  class="material-icons ornstio-suffix"
+  [ngClass]="iconClasses"
+  >{{ suffix }}</i
+>

@@ -1,0 +1,75 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>examples</h1>
+    <button
+      ornstio-button
+      ornstioRipple
+      size="large"
+      (click)="showCode = !showCode"
+    >
+      <i class="material-icons">code</i>
+    </button>
+  </ornstio-card-header>
+  <ornstio-card-content padding="16px 0 0px 16px">
+    <ornstio-tabs *ngIf="showCode">
+      <ornstio-tab name="html">
+        <ornstio-code-viewer [code]="html" lang="html"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="ts">
+        <ornstio-code-viewer [code]="ts" lang="ts"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="scss" *ngIf="scss">
+        <ornstio-code-viewer [code]="scss" lang="scss"></ornstio-code-viewer>
+      </ornstio-tab>
+    </ornstio-tabs>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-label>Color</ornstio-label>
+        <ornstio-select size="large" [(value)]="color">
+          <ornstio-option *ngFor="let o of colors" [value]="o">{{
+            o
+          }}</ornstio-option>
+        </ornstio-select>
+      </ornstio-form-field>
+    </div>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-checkbox size="small" [(value)]="disabled"
+          ><span>Disabled</span></ornstio-checkbox
+        >
+      </ornstio-form-field>
+    </div>
+  </ornstio-card-content>
+  <ornstio-card-footer>
+    <ornstio-form-field>
+      <ornstio-label>Example</ornstio-label>
+      <ornstio-radio-group
+        [color]="color"
+        [disabled]="disabled"
+        [(value)]="value"
+      >
+        <ornstio-radio-option *ngFor="let v of values" [value]="v">{{
+          v.name
+        }}</ornstio-radio-option>
+      </ornstio-radio-group>
+    </ornstio-form-field>
+  </ornstio-card-footer>
+</ornstio-card>
+
+<ornstio-card>
+  <ornstio-card-header><h1>Api</h1></ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="apis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>
+
+<ornstio-card>
+  <ornstio-card-header
+    ><h1 [style.textTransform]="'none'">
+      OrnstioRadioOption
+    </h1></ornstio-card-header
+  >
+  <ornstio-card-content>
+    <app-api-table [apis]="optionApis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>

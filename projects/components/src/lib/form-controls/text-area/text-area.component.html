@@ -1,0 +1,11 @@
+<textarea
+  #textarea
+  [(ngModel)]="value"
+  (ngModelChange)="valueChange.next($event)"
+  [disabled]="disabled"
+  [readonly]="readonly"
+  [ngClass]="classes"
+  [placeholder]="placeholder"
+  [rows]="rows"
+  [tabindex]="tabindex"
+></textarea>

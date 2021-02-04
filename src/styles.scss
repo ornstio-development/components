@@ -1,0 +1,38 @@
+@import "projects/components/assets/_theme";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+
+$theme: (
+  "primary": #2680eb,
+  "secondary": #393e46,
+  "warn": #d7373f,
+);
+@include ornstio-theme($theme, #d7373f, "Works Sans");
+
+html,
+body,
+app-root {
+  margin: 0;
+  height: 100%;
+  display: block;
+}
+
+router-outlet + * {
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1;
+  background: #e5e5e5;
+  top: 64px;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.26);
+}

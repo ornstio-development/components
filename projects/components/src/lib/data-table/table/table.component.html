@@ -1,0 +1,59 @@
+<colgroup>
+  <col
+    *ngFor="let column of displayColumns"
+    [span]="column.span"
+    [ngStyle]="{ width: column.width }"
+  />
+</colgroup>
+<thead>
+  <tr>
+    <ng-container *ngFor="let column of displayColumns">
+      <th
+        ornstioColumnHeader
+        [resize]="column.resize"
+        [(width)]="column.width"
+        *ngIf="!column.headerTemplate"
+      >
+        <ornstio-form-field>
+          <ornstio-label
+            [ngClass]="{ sort: column.sort }"
+            (click)="sortColumn = column"
+            >{{ column.name }}
+            <i class="material-icons" *ngIf="column.sortDirection === 'asc'"
+              >arrow_upward</i
+            >
+            <i class="material-icons" *ngIf="column.sortDirection === 'desc'"
+              >arrow_downward</i
+            ></ornstio-label
+          >
+          <ornstio-input
+            [ngStyle]="{ display: column.filter ? null : 'none' }"
+            [value]="column.filterValue"
+            (valueChange)="column.setFilter($event)"
+            prefix="search"
+            size="small"
+          ></ornstio-input>
+        </ornstio-form-field>
+      </th>
+      <ng-container
+        *ngTemplateOutlet="
+          column.headerTemplate;
+          context: { $implicit: column }
+        "
+      ></ng-container>
+    </ng-container>
+  </tr>
+</thead>
+<tbody>
+  <ng-container *ngFor="let datum of filteredData; let index = index">
+    <tr #tableRow (click)="row.next(displayRows[index])">
+      <ng-container
+        ornstioRow
+        [row]="tableRow"
+        [index]="index"
+        [columns]="displayColumns"
+        [data]="datum"
+      ></ng-container>
+    </tr>
+  </ng-container>
+</tbody>

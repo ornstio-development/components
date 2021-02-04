@@ -1,0 +1,13 @@
+.ripple {
+  height: 256px;
+  width: 256px;
+  border: 1px solid black;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+
+  span {
+    pointer-events: none;
+    margin: auto;
+  }
+}

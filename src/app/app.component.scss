@@ -1,0 +1,69 @@
+@import "projects/components/assets/_theme";
+a {
+  text-decoration: none;
+}
+
+.grid {
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  .left {
+    width: 256px;
+    height: 100vh;
+    border-right: 1px solid black;
+    overflow-y: auto;
+
+    ornstio-label {
+      display: block;
+      padding: 16px 0 16px 16px;
+      font-weight: 500;
+      border-bottom: 1px solid $black25;
+    }
+
+    .link {
+      display: block;
+      padding-left: 32px;
+      color: black;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 36px;
+      color: $black90;
+      &:hover,
+      &.active {
+        background: $black25;
+      }
+      border-bottom: 1px solid $black25;
+    }
+
+    .header {
+      display: flex;
+      img {
+        height: 48px;
+        width: 48px;
+        margin: 8px 16px;
+      }
+    }
+  }
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .top {
+      padding-left: 16px;
+      height: 64px;
+      border-bottom: 1px solid black;
+      display: flex;
+    }
+  }
+}
+
+h1 {
+  line-height: 48px;
+  font-size: 24px;
+  margin: auto 0;
+  text-transform: lowercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+}

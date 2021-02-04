@@ -1,0 +1,72 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>examples</h1>
+    <button
+      ornstio-button
+      ornstioRipple
+      size="large"
+      (click)="showCode = !showCode"
+    >
+      <i class="material-icons">code</i>
+    </button>
+  </ornstio-card-header>
+  <ornstio-card-content padding="16px 0 0px 16px">
+    <ornstio-tabs *ngIf="showCode">
+      <ornstio-tab name="html">
+        <ornstio-code-viewer [code]="html" lang="html"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="ts">
+        <ornstio-code-viewer [code]="ts" lang="ts"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="scss" *ngIf="scss">
+        <ornstio-code-viewer [code]="scss" lang="scss"></ornstio-code-viewer>
+      </ornstio-tab>
+    </ornstio-tabs>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-label>Value</ornstio-label>
+        <ornstio-input [(value)]="value"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Delay</ornstio-label>
+        <ornstio-input type="number" [(value)]="tooltipDelay"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Position</ornstio-label>
+        <ornstio-select [(value)]="tooltipPosition">
+          <ornstio-option [value]="p" *ngFor="let p of tooltipPositions">{{
+            p
+          }}</ornstio-option>
+        </ornstio-select>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Colors</ornstio-label>
+        <ornstio-select [(value)]="tooltipColor">
+          <ornstio-option [value]="c" *ngFor="let c of tooltipColors">{{
+            c
+          }}</ornstio-option>
+        </ornstio-select>
+      </ornstio-form-field>
+    </div>
+  </ornstio-card-content>
+  <ornstio-card-footer>
+    <button
+      ornstio-button
+      ornstioRipple
+      [ornstioTooltip]="value"
+      [tooltipDelay]="tooltipDelay"
+      [tooltipPosition]="tooltipPosition"
+      [tooltipColor]="tooltipColor"
+    >
+      Hover
+    </button>
+  </ornstio-card-footer>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>api</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="apis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>

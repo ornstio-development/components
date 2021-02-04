@@ -1,0 +1,16 @@
+@import "projects/components/assets/theme";
+
+ornstio-card-content {
+  ornstio-tabs {
+    margin: 0 0 16px 0;
+  }
+}
+
+ornstio-paginator {
+  border: 1px solid $black25;
+  border-top: 0px solid transparent;
+}
+
+.header-column {
+  vertical-align: middle;
+}

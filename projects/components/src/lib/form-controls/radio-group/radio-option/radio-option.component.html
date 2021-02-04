@@ -1,0 +1,10 @@
+<div
+  tabindex="0"
+  class="ornstio-radio"
+  [ngClass]="classes"
+  (keyup.enter)="click()"
+  (keyup.space)="click()"
+>
+  <div *ngIf="active" [ngClass]="classes" class="ornstio-radio-active"></div>
+</div>
+<span [ngClass]="classes"><ng-content></ng-content></span>

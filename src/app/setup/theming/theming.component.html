@@ -1,0 +1,26 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>theming</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <p>
+      Ornstio theming allows for users to use an unlimited amount of
+      user-defined colors to apply to the components. To apply the theme, simply
+      define your colors in a map, import the theme from your node_modules, and
+      pass the map of colors into the theme mixin along with your error color
+      and font-family.
+    </p>
+    <ornstio-code-viewer lang="scss" [code]="scss"></ornstio-code-viewer>
+    <p>
+      To use the colors you've defined, simply pass it into applicable controls
+      using the @Input() color: string property.
+    </p>
+    <ornstio-code-viewer lang="html" [code]="html"></ornstio-code-viewer>
+    <button ornstio-raised-button ornstioRipple color="primary">Primary</button>
+    <button ornstio-raised-button ornstioRipple color="secondary">
+      Seconday
+    </button>
+    <button ornstio-raised-button ornstioRipple color="warn">Warn</button>
+  </ornstio-card-content>
+</ornstio-card>
+<ornstio-card></ornstio-card>

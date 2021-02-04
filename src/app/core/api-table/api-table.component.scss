@@ -1,0 +1,23 @@
+@import "projects/components/assets/theme";
+
+table {
+  margin: -16px;
+  width: calc(100% + 32px);
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  tr {
+    &:not(:last-child) {
+      border-bottom: 1px solid $black25;
+    }
+    td {
+      padding: 16px;
+      &:first-child {
+        font-weight: 500;
+      }
+      &:last-child {
+        border-left: 1px solid $black25;
+      }
+    }
+  }
+}

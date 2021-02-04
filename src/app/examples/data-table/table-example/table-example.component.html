@@ -1,0 +1,127 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>examples</h1>
+    <button
+      ornstio-button
+      ornstioRipple
+      size="large"
+      (click)="showCode = !showCode"
+    >
+      <i class="material-icons">code</i>
+    </button>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <ornstio-tabs *ngIf="showCode">
+      <ornstio-tab name="html">
+        <ornstio-code-viewer [code]="html" lang="html"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="ts">
+        <ornstio-code-viewer [code]="ts" lang="ts"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="scss" *ngIf="scss">
+        <ornstio-code-viewer [code]="scss" lang="scss"></ornstio-code-viewer>
+      </ornstio-tab>
+    </ornstio-tabs>
+    <table ornstio-table [dataSource]="data" [paginator]="paginator">
+      <td
+        *ornstioColumn="
+          let element;
+          headerTemplate: headerTemplate;
+          width: '53px'
+        "
+      >
+        <ornstio-checkbox
+          [(value)]="element.selected"
+          size="small"
+        ></ornstio-checkbox>
+      </td>
+      <td
+        *ornstioColumn="
+          let element;
+          name: '#';
+          sort: sort;
+          property: 'atomicNumber';
+          filter: true;
+          width: '96px';
+          resize: true
+        "
+      >
+        {{ element.atomicNumber }}
+      </td>
+      <td
+        *ornstioColumn="
+          let element;
+          name: 'Symbol';
+          property: 'symbol';
+          sort: true;
+          filter: filter;
+          width: '96px';
+          resize: true
+        "
+      >
+        {{ element.symbol }}
+      </td>
+      <td
+        *ornstioColumn="
+          let element;
+          name: 'Name';
+          property: 'element';
+          sort: true;
+          filter: filter;
+          resize: true
+        "
+      >
+        {{ element.element }}
+      </td>
+      <td
+        *ornstioColumn="
+          let element;
+          name: 'Etymology';
+          property: 'etymology';
+          sort: true;
+          filter: filter;
+          resize: true
+        "
+      >
+        {{ element.etymology }}
+      </td>
+    </table>
+    <ng-template #headerTemplate let-column>
+      <th class="header-column">
+        <ornstio-checkbox
+          (valueChange)="selectAll($event)"
+          size="small"
+        ></ornstio-checkbox>
+      </th>
+    </ng-template>
+    <ornstio-paginator
+      #paginator
+      [length]="data.length"
+      [pageSizes]="pageSizes"
+    ></ornstio-paginator>
+  </ornstio-card-content>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>api</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="apis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1 [style.textTransform]="'none'">OrnstioRowDirective</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="rowApis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1 [style.textTransform]="'none'">OrnstioColumnDirective</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="columnApis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>

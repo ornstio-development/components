@@ -1,0 +1,43 @@
+<ornstio-label>Items per page:</ornstio-label>
+<ornstio-select size="small" [(value)]="pageSize">
+  <ornstio-option *ngFor="let ps of pageSizes" [value]="ps">{{
+    ps
+  }}</ornstio-option>
+</ornstio-select>
+<ornstio-label
+  >{{ pageIndex * pageSize + 1 }} -
+  {{ nextPage === pageIndex ? length : nextPage * pageSize }} of
+  {{ length }}</ornstio-label
+>
+<button
+  ornstio-button
+  [disabled]="previousPage === pageIndex"
+  size="medium"
+  (click)="firstPage()"
+>
+  <i class="material-icons">first_page</i>
+</button>
+<button
+  ornstio-button
+  [disabled]="previousPage === pageIndex"
+  size="medium"
+  (click)="pageIndex = previousPage"
+>
+  <i class="material-icons">keyboard_arrow_left</i>
+</button>
+<button
+  ornstio-button
+  [disabled]="nextPage === pageIndex"
+  size="medium"
+  (click)="pageIndex = nextPage"
+>
+  <i class="material-icons">keyboard_arrow_right</i>
+</button>
+<button
+  ornstio-button
+  [disabled]="nextPage === pageIndex"
+  size="medium"
+  (click)="lastPage()"
+>
+  <i class="material-icons">last_page</i>
+</button>

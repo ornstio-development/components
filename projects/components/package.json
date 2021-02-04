@@ -1,0 +1,36 @@
+{
+  "name": "@ornstio/components",
+  "version": "0.0.1-alpha.5",
+  "peerDependencies": {
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0",
+    "@angular/cdk": "~10.0.0",
+    "@ornstio/ts-linq": "^0.0.9",
+    "highlight.js": "^10.4.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "description": "Component library for Angular",
+  "main": "index.ts",
+  "scripts": {
+    "test": "ng test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ornstio-development/components.git"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "component",
+    "library",
+    "ornstio"
+  ],
+  "author": "ornstio.development",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ornstio-development/components/issues"
+  },
+  "homepage": "https://components.ornstio.com"
+}

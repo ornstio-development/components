@@ -1,0 +1,9 @@
+<div class="header">
+  <h3>{{ header }}</h3>
+  <i class="material-icons" *ngIf="closeable" (click)="dialogService.close()"
+    >close</i
+  >
+</div>
+<div class="body">
+  <ng-content></ng-content>
+</div>

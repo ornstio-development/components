@@ -1,0 +1,71 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>examples</h1>
+    <button
+      ornstio-button
+      ornstioRipple
+      size="large"
+      (click)="showCode = !showCode"
+    >
+      <i class="material-icons">code</i>
+    </button>
+  </ornstio-card-header>
+  <ornstio-card-content padding="16px 0 0px 16px">
+    <ornstio-tabs *ngIf="showCode">
+      <ornstio-tab name="html">
+        <ornstio-code-viewer [code]="html" lang="html"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="ts">
+        <ornstio-code-viewer [code]="ts" lang="ts"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="scss" *ngIf="scss">
+        <ornstio-code-viewer [code]="scss" lang="scss"></ornstio-code-viewer>
+      </ornstio-tab>
+    </ornstio-tabs>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-label>Color</ornstio-label>
+        <ornstio-select size="large" [(value)]="color">
+          <ornstio-option *ngFor="let o of colors" [value]="o">{{
+            o
+          }}</ornstio-option>
+        </ornstio-select>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Size</ornstio-label>
+        <ornstio-select size="large" [(value)]="size">
+          <ornstio-option *ngFor="let o of sizes" [value]="o">{{
+            o
+          }}</ornstio-option>
+        </ornstio-select>
+      </ornstio-form-field>
+    </div>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-checkbox size="small" [(value)]="disabled"
+          ><span>Disabled</span></ornstio-checkbox
+        >
+      </ornstio-form-field>
+    </div>
+  </ornstio-card-content>
+  <ornstio-card-footer>
+    <ornstio-form-field [style.display]="'inline-block'">
+      <ornstio-label>Example</ornstio-label>
+      <ornstio-checkbox
+        [(value)]="value"
+        [color]="color"
+        [size]="size"
+        [disabled]="disabled"
+        ><span>Checkbox</span></ornstio-checkbox
+      >
+    </ornstio-form-field>
+  </ornstio-card-footer>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>api</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="apis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>

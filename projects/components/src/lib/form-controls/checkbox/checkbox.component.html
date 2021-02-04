@@ -1,0 +1,18 @@
+<input
+  #input
+  [(ngModel)]="value"
+  (ngModelChange)="valueChange.next($event)"
+  [disabled]="disabled"
+  type="checkbox"
+  hidden
+/>
+<div
+  [tabindex]="tabindex"
+  class="ornstio-checkbox"
+  [ngClass]="classes"
+  (keyup.enter)="input.click()"
+  (keyup.space)="input.click()"
+>
+  <i *ngIf="input.checked" [ngClass]="classes" class="material-icons">check</i>
+</div>
+<ng-content></ng-content>

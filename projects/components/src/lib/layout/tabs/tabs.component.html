@@ -1,0 +1,11 @@
+<div
+  class="tab"
+  *ngFor="let t of tabs"
+  (click)="tab = t"
+  [ngClass]="{ active: t.active }"
+>
+  {{ t.name }}
+</div>
+<div [ngClass]="[scroll]" class="tab-content">
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,86 @@
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>examples</h1>
+    <button
+      ornstio-button
+      ornstioRipple
+      size="large"
+      (click)="showCode = !showCode"
+    >
+      <i class="material-icons">code</i>
+    </button>
+  </ornstio-card-header>
+  <ornstio-card-content padding="16px 0 0px 16px">
+    <ornstio-tabs *ngIf="showCode">
+      <ornstio-tab name="html">
+        <ornstio-code-viewer [code]="html" lang="html"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="ts">
+        <ornstio-code-viewer [code]="ts" lang="ts"></ornstio-code-viewer>
+      </ornstio-tab>
+      <ornstio-tab name="scss" *ngIf="scss">
+        <ornstio-code-viewer [code]="scss" lang="scss"></ornstio-code-viewer>
+      </ornstio-tab>
+    </ornstio-tabs>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-label>Data</ornstio-label>
+        <ornstio-input [(value)]="data"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Height</ornstio-label>
+        <ornstio-input [(value)]="height"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Width</ornstio-label>
+        <ornstio-input [(value)]="width"></ornstio-input>
+      </ornstio-form-field>
+    </div>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-label>Top</ornstio-label>
+        <ornstio-input [(value)]="top"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Left</ornstio-label>
+        <ornstio-input [(value)]="left"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Bottom</ornstio-label>
+        <ornstio-input [(value)]="bottom"></ornstio-input>
+      </ornstio-form-field>
+      <ornstio-form-field>
+        <ornstio-label>Right</ornstio-label>
+        <ornstio-input [(value)]="right"></ornstio-input>
+      </ornstio-form-field>
+    </div>
+    <div class="configuration">
+      <ornstio-form-field>
+        <ornstio-checkbox size="small" [(value)]="closable"
+          ><span>Closable</span></ornstio-checkbox
+        >
+      </ornstio-form-field>
+    </div>
+  </ornstio-card-content>
+  <ornstio-card-footer>
+    <button ornstio-button ornstioRipple class="btn" (click)="open()">
+      Open
+    </button>
+  </ornstio-card-footer>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1>api</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="apis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>
+<ornstio-card>
+  <ornstio-card-header>
+    <h1 [style.textTransform]="'none'">OrnstioDialogConfig</h1>
+  </ornstio-card-header>
+  <ornstio-card-content>
+    <app-api-table [apis]="configApis"></app-api-table>
+  </ornstio-card-content>
+</ornstio-card>

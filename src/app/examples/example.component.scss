@@ -1,0 +1,59 @@
+@import "projects/components/assets/theme";
+:host {
+  padding: 16px 25% 0 25%;
+  display: block;
+}
+
+h1 {
+  line-height: 48px;
+  font-size: 24px;
+  margin: auto 0;
+  text-transform: lowercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+ornstio-card {
+  background: white;
+  margin-bottom: 32px;
+}
+
+ornstio-card-header {
+  display: flex;
+
+  ornstio-button {
+    margin: auto 0;
+    cursor: pointer;
+  }
+
+  h1 {
+    flex: 1;
+  }
+}
+
+ornstio-card-content {
+  display: block;
+
+  .configuration {
+    display: flex;
+    flex-wrap: wrap;
+    & * {
+      flex: 1;
+
+      ornstio-input,
+      ornstio-select {
+        display: flex;
+        min-width: 196px;
+      }
+    }
+  }
+  ornstio-form-field {
+    flex: 1;
+    display: inline-block;
+    margin: 0 16px 16px 0px;
+  }
+
+  ornstio-tabs {
+    margin: 0 16px 16px 0;
+  }
+}
