@@ -41,12 +41,14 @@ export class OrnstioRadioOptionComponent implements OnInit {
     this.radioGroup.valueChange.next((this.radioGroup.value = this.value));
   }
 
-  @HostBinding('class') get classes(): string[] {
+  @HostBinding('class') get classes(): string {
     return [
       this.color,
       this.active ? 'active' : null,
       this.disabled ? 'disabled' : null,
-    ].filter((_) => !!_);
+    ]
+      .filter((_) => !!_)
+      .join(' ');
   }
 
   constructor(

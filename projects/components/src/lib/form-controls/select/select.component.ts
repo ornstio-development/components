@@ -20,7 +20,7 @@ import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal } from '@angular/cdk/portal';
 import { HostListener, ViewChild } from '@angular/core';
 import { from, fromEvent, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
 import { ENTER, SPACE, DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { OrnstioInputComponent } from '../input/_input.index';
 import { OrnstioSize } from '../../enums/ornstio.size.enum';
@@ -128,7 +128,8 @@ export class OrnstioDropdownComponent implements OnDestroy {
   ],
 })
 export class OrnstioSelectComponent
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy
+{
   private _destroy$ = new Subject<void>();
   private _options: OrnstioOptionComponent[] = [];
   private _option: OrnstioOptionComponent;
@@ -136,6 +137,7 @@ export class OrnstioSelectComponent
   private _color: string;
   private _focused: boolean;
   private _error: boolean;
+  private _init = false;
   get filteredOptions(): OrnstioOptionComponent[] {
     return this._options.filter((o) => !o.hidden);
   }
@@ -159,15 +161,22 @@ export class OrnstioSelectComponent
   get value(): any {
     return this._value;
   }
+
   @Input() set value(value: any) {
     this._value = value;
     this.option = this._options.first((o) => o.value === value);
     this.text = this.option?.text;
     this._activeOption = null;
     this.control?.patchValue(value);
-    this.valueChange.next(this.value);
+    if (this._init) {
+      this._valueChange.next(this.value);
+    }
+    this._init = true;
   }
-  @Output() valueChange = new EventEmitter<any>();
+  private _valueChange = new EventEmitter<any>();
+  @Output() valueChange = this._valueChange
+    .asObservable()
+    .pipe(distinctUntilChanged());
 
   @Input() tabindex: number = 0;
   @Input() disabled: boolean = false;

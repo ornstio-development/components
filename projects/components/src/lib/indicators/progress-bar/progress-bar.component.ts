@@ -16,7 +16,10 @@ import {
 export class OrnstioProgressBarComponent implements OnInit, AfterViewInit {
   @ViewChild('progressBar', { static: true })
   progressBar: ElementRef<HTMLDivElement>;
-  @HostBinding('class') @Input() color: string;
+  @Input() color: string;
+  @HostBinding('class') get classes(): string {
+    return [this.color].join(' ');
+  }
   @HostBinding('style.height') @Input() size: string = '16px';
   @HostBinding('class.indeterminate') @Input() indeterminate: boolean = true;
 

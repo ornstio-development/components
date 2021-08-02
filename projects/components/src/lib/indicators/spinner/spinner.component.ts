@@ -22,7 +22,10 @@ export class OrnstioSpinnerComponent implements OnInit, AfterViewInit {
   @HostBinding('style.height') get height(): string {
     return `${this._size}px`;
   }
-  @HostBinding('class') @Input() color: string;
+  @Input() color: string;
+  @HostBinding('class') get classes(): string {
+    return [this.color].join(' ');
+  }
   private _size: number = 48;
   @Input() set size(size: number) {
     this._size = size;

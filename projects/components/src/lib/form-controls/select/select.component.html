@@ -11,7 +11,7 @@
   (click)="disabled ? null : open()"
   (keydown)="handleKeyDown($event)"
   [tabindex]="tabindex"
-  [readonly]="filterable"
+  [readonly]="!filterable"
 ></ornstio-input>
 <ornstio-dropdown [reference]="input.inputElementRef.nativeElement">
   <div class="ornstio-container">

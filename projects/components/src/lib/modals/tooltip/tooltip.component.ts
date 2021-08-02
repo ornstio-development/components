@@ -12,8 +12,8 @@ interface OrnstioTooltipData {
   styleUrls: ['./tooltip.component.scss'],
 })
 export class OrnstioTooltipComponent implements OnInit {
-  @HostBinding('class') get classes(): string[] {
-    return [this.data.color ?? 'basic'];
+  @HostBinding('class') get classes(): string {
+    return [this.data.color ?? 'basic'].join(' ');
   }
 
   constructor(@Inject(ORNSTIO_TOOLTIP_DATA) public data: OrnstioTooltipData) {}

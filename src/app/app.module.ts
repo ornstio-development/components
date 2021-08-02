@@ -54,6 +54,7 @@ import { TooltipExampleComponent } from './examples/modals/tooltip-example/toolt
 import { TooltipPositionExampleComponent } from './examples/enums/tooltip-position-example/tooltip-position-example.component';
 import { SpinnerExampleComponent } from './examples/indicators/spinner-example/spinner-example.component';
 import { ProgressBarExampleComponent } from './examples/indicators/progress-bar-example/progress-bar-example.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { ProgressBarExampleComponent } from './examples/indicators/progress-bar-
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     OrnstioInputModule,
     OrnstioFormFieldModule,

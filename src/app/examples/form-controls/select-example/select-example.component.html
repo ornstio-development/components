@@ -61,6 +61,7 @@
         [color]="color"
         [disabled]="disabled"
         [error]="error"
+        (valueChange)="valueChange($event)"
       >
         <ornstio-option *ngFor="let value of values" [value]="value">{{
           value.name

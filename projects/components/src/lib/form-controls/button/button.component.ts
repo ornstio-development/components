@@ -33,8 +33,8 @@ export class OrnstioButtonComponent implements OnInit {
 
   @HostBinding('disabled') @Input() disabled: boolean;
 
-  @HostBinding('class') get classes(): string[] {
-    return [this.color, this.size];
+  @HostBinding('class') get classes(): string {
+    return [this.color, this.size].join(' ');
   }
 
   @HostListener('click', ['$event']) click(): void {

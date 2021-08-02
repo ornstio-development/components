@@ -23,10 +23,10 @@ export class OrnstioOptionComponent implements OnInit, AfterViewChecked {
     return this.selectComponent.option === this;
   }
 
-  @HostBinding('class') get classes(): string[] {
-    return [
-      this.selectComponent.color ? this.selectComponent.color : 'basic',
-    ].filter((_) => !!_);
+  @HostBinding('class') get classes(): string {
+    return [this.selectComponent.color ? this.selectComponent.color : 'basic']
+      .filter((_) => !!_)
+      .join(' ');
   }
 
   @HostListener('click', ['$event'])

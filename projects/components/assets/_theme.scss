@@ -9,9 +9,10 @@ $black50: #7f7f7f;
 @mixin ornstio-theme($colors, $error, $font-family) {
   @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
   @import "~@angular/cdk/overlay-prebuilt.css";
-  $colors: map.set($colors, "error", $error);
   $font-family: $font-family, sans-serif;
-
+  @if not(map.get($colors, "error")) {
+    @error ('Theme must provide error color');
+  }
   body {
     font-family: $font-family;
     color: $black90;

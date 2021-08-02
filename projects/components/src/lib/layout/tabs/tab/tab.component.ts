@@ -15,12 +15,12 @@ import { OrnstioTabsComponent } from '../tabs.component';
 })
 export class OrnstioTabComponent implements OnInit {
   @Input() name: string;
-  @HostBinding('class') get classes(): string[] {
+  @HostBinding('class') get classes(): string {
     return [
       this.active ? 'active' : 'inactive',
       this.scroll,
       this === this.tabsComponent.previousTab ? 'prev' : 'none',
-    ];
+    ].join(' ');
   }
   @HostBinding('style.display') get display(): string {
     return this.active || this === this.tabsComponent.previousTab

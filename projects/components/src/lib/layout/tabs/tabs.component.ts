@@ -94,8 +94,8 @@ export class OrnstioTabsComponent implements OnInit {
     return this._tabs;
   }
   @Input() color: string = 'basic';
-  @HostBinding('class') get classes(): string[] {
-    return [this.color];
+  @HostBinding('class') get classes(): string {
+    return [this.color].join(' ');
   }
 
   constructor() {}

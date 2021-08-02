@@ -81,4 +81,8 @@ export class SelectExampleComponent extends ExampleComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  valueChange(event$: { name: string; value: string }): void {
+    console.log(event$);
+  }
 }

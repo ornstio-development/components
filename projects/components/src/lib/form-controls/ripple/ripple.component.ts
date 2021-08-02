@@ -24,8 +24,8 @@ export class OrnstioRippleComponent implements OnInit {
   private _size: number;
   private _top: number;
   private _left: number;
-  @HostBinding('class') get classes(): string[] {
-    return [this.rippleDirective.color];
+  @HostBinding('class') get classes(): string {
+    return [this.rippleDirective.color].join(' ');
   }
   @HostBinding('style.height') get height(): string {
     return `${this._size}px`;
@@ -48,7 +48,8 @@ export class OrnstioRippleComponent implements OnInit {
     private rippleDirective: OrnstioRippleDirective,
     @Inject(ORNSTIO_RIPPLE_DATA) data: OrnstioRippleData
   ) {
-    this._rect = this.rippleDirective.elementRef.nativeElement.getBoundingClientRect();
+    this._rect =
+      this.rippleDirective.elementRef.nativeElement.getBoundingClientRect();
     const point = this.rippleDirective.centered
       ? { x: this._rect.width / 2, y: this._rect.height / 2 }
       : { x: data.offsetX, y: data.offsetY };

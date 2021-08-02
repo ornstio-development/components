@@ -5,6 +5,7 @@ $theme: (
   "primary": #2680eb,
   "secondary": #393e46,
   "warn": #d7373f,
+  "error": #d7373f,
 );
 @include ornstio-theme($theme, #d7373f, "Works Sans");
 
